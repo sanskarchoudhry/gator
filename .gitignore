@@ -23,5 +23,5 @@ Thumbs.db
 .idea/
 *.swp
 
-# Config file (user-specific, don’t commit!)
 .gatorconfig.json
+.history
