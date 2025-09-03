@@ -1,0 +1,27 @@
+# Binaries (what `go build` produces)
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Go build cache
+/go-build/
+*.log
+
+# Dependency directories
+vendor/
+
+# OS-specific junk
+.DS_Store
+Thumbs.db
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+
+# Config file (user-specific, don’t commit!)
+.gatorconfig.json
