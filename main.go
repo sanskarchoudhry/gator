@@ -1,30 +1,37 @@
 package main
 
 import (
-	"fmt"
 	"log"
+	"os"
 
+	"github.com/sanskarchoudhry/gator/internal/cli"
 	"github.com/sanskarchoudhry/gator/internal/config"
 )
 
 func main() {
-	// 1. Read the config file
+	// Load config
 	cfg, err := config.Read()
 	if err != nil {
 		log.Fatalf("error reading config: %v", err)
 	}
 
-	// 2. Set current user to your name
-	err = cfg.SetUser("jojo")
-	if err != nil {
-		log.Fatalf("error setting user: %v", err)
+	s := &cli.State{Cfg: &cfg}
+
+	// Setup command registry
+	cmds := cli.Commands{Handlers: make(map[string]func(*cli.State, cli.Command) error)}
+	cmds.Register("login", cli.HandlerLogin)
+
+	// Parse command-line args
+	if len(os.Args) < 2 {
+		log.Fatal("not enough arguments")
 	}
 
-	// 3. Read again to confirm changes
-	updatedCfg, err := config.Read()
-	if err != nil {
-		log.Fatalf("error reading updated config: %v", err)
+	cmd := cli.Command{
+		Name: os.Args[1],
+		Args: os.Args[2:], // everything after "login"
 	}
 
-	fmt.Printf("Config: %+v\n", updatedCfg)
+	if err := cmds.Run(s, cmd); err != nil {
+		log.Fatal(err)
+	}
 }
