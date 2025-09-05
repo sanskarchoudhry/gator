@@ -39,9 +39,9 @@ func main() {
 	cmds := cli.Commands{Handlers: make(map[string]func(*cli.State, cli.Command) error)}
 	cmds.Register("login", cli.HandlerLogin)
 	cmds.Register("register", cli.HandlerRegister)
-	cmds.Register("reset", cli.HandlerReset) 
+	cmds.Register("reset", cli.HandlerReset)
 	cmds.Register("users", cli.HandlerUsers)
-
+	cmds.Register("agg", cli.HandlerAgg)
 
 	// Parse args
 	if len(os.Args) < 2 {
