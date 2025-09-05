@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/sanskarchoudhry/gator/internal/config"
+	"github.com/sanskarchoudhry/gator/internal/database"
 )
 
 type Command struct {
@@ -13,6 +14,7 @@ type Command struct {
 
 type State struct {
 	Cfg *config.Config
+	DB  *database.Queries
 }
 
 type Commands struct {
