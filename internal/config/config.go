@@ -30,7 +30,6 @@ func Read() (Config, error) {
 	if err := json.Unmarshal(data, &cfg); err != nil {
 		return cfg, err
 	}
-
 	return cfg, nil
 }
 
